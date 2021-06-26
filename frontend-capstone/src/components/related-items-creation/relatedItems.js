@@ -33,6 +33,7 @@ class RelatedItems extends React.Component {
     apiMaster
       .getRelatedProducts(this.props.currentProductID)
       .then((ids) => {
+        console.log(ids)
         this.setState({
           relatedProductIds: this.removeDuplicateRelatedIds(ids.data),
         });

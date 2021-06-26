@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const port = 3000;
 const path = require('path');
+const mongoController = require('./database/index.js')
 
 app.use(express.static('dist'));
 
