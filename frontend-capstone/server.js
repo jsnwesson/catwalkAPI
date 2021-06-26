@@ -19,6 +19,19 @@ app.get('/products/:id', (req, res) => {
   })
 });
 
+app.get('/products/:id/related', (req,res) => {
+  let productId = Number(req.params.id);
+  console.log(typeof productId);
+
+  getRelated({current_product_id: productId}, (err, data) => {
+    if (err) {
+      res.send(err);
+    } else {
+      res.send(data);
+    }
+  })
+})
+
 app.listen(port, () =>
   console.log(`Example app listening at http://localhost:${port}`)
 );
