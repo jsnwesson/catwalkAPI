@@ -21,9 +21,20 @@ app.get('/products/:id', (req, res) => {
 
 app.get('/products/:id/related', (req,res) => {
   let productId = Number(req.params.id);
-  console.log(typeof productId);
 
   getRelated({current_product_id: productId}, (err, data) => {
+    if (err) {
+      res.send(err);
+    } else {
+      res.send(data);
+    }
+  })
+})
+
+app.get('/products/:id/styles', (req, res) => {
+  let productId = Number(req.params.id);
+
+  getStyles({productId: productId}, (err, data) => {
     if (err) {
       res.send(err);
     } else {
