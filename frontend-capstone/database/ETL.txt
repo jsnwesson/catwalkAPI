@@ -1,0 +1,9 @@
+ETL TRANSFORMATION examples
+mongoimport --db fetcher --collection products --type csv --headerline --ignoreBlanks --file /Users/Wesson/Documents/SDC/product.csv
+
+db.productfeatures.aggregate(
+  [
+    {$lookup: {from: 'related',localField: 'id',foreignField: 'current_product_id',as: 'related'}},
+    {$project: {related: {_id: 0,}}},
+    {$out: 'prodfeatrel'},
+  ])

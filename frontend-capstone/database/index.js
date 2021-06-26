@@ -101,8 +101,6 @@ module.exports.getProduct = getProduct;
 module.exports.getRelated = getRelated;
 module.exports.getStyles = getStyles;
 
-// db.productfeatures.aggregate([{$lookup: {from: 'related',localField: 'id',foreignField: 'current_product_id',as: 'related'}}, {$project: {related: {_id: 0,}}}, {$out: 'prodfeatrel'}])
-
 // console.log(getProduct({id: 1}))
 // console.log(getRelated({current_product_id: 1}))
 // console.log(getStyle({productId: 1}))
