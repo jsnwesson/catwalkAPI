@@ -57,17 +57,17 @@ let styleSchema = mongoose.Schema({
 })
 
 let Product = mongoose.model('productfeature', productSchema);
-let Style = mongoose.model('Style', styleSchema);
+let Styles = mongoose.model('stylephotosku', styleSchema, 'stylephotosku');
 let Feature = mongoose.model('Feature', featureSchema);
 let Skus = mongoose.model('Sku', skuSchema);
 let Related = mongoose.model('Related', relatedProducts, 'related');
 
-let findProduct = (productId, callback) => {
+let getProduct = (productId, callback) => {
   Product.find(productId, function (err, product) {
     if (err) {
-      callback(err);
+      callback(err, null);
     } else {
-      callback('here\'s the products!', product)
+      callback(null, product)
     };
   });
 }
@@ -75,21 +75,34 @@ let findProduct = (productId, callback) => {
 let getRelated = (productId, callback) => {
   Related.find(productId, function (err, related) {
     if (err) {
-      callback(err);
+      callback(err, null);
     } else {
       let array = [];
       for (var i = 0; i < related.length; i++) {
         array.push(related[i].related_product_id)
       }
-      callback.log('here is the array!', array)
+      callback(null, array)
     }
   })
 }
 
-// console.log(findProduct({id: 1}))
-console.log(getRelated({current_product_id: 1}))
-
-module.export = {
-  findProduct,
+let getStyles = (productId, callback) => {
+  Styles.find(productId, function (err, styles) {
+    if (err) {
+      callback(err, null);
+    } else {
+      callback(null,  styles)
+    }
+  })
 }
+
+
+module.exports.getProduct = getProduct;
+module.exports.getRelated = getRelated;
+module.exports.getStyles = getStyles;
+
 // db.productfeatures.aggregate([{$lookup: {from: 'related',localField: 'id',foreignField: 'current_product_id',as: 'related'}}, {$project: {related: {_id: 0,}}}, {$out: 'prodfeatrel'}])
+
+// console.log(getProduct({id: 1}))
+// console.log(getRelated({current_product_id: 1}))
+// console.log(getStyle({productId: 1}))
