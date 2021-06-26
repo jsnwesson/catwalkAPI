@@ -66,5 +66,4 @@ Skus.findById("60d4c0bb84e6df95fb254554", function (err, sku) {
   };
 });
 
-
 // db.productfeatures.aggregate([{$lookup: {from: 'related',localField: 'id',foreignField: 'current_product_id',as: 'related'}}, {$project: {related: {_id: 0,}}}, {$out: 'prodfeatrel'}])
