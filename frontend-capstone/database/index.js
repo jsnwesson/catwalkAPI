@@ -56,8 +56,8 @@ let styleSchema = mongoose.Schema({
   photos: [{url: String, thumbnail_url: String}],
 })
 
-let Product = mongoose.model('prodfeatopt', productSchema);
-let Styles = mongoose.model('stylephotosku', styleSchema, 'stylephotosku');
+let Product = mongoose.model('productfeature', productSchema);
+let Styles = mongoose.model('styleskuphoto', styleSchema, 'styleskuphoto');
 let Feature = mongoose.model('Feature', featureSchema);
 let Skus = mongoose.model('Sku', skuSchema);
 let Related = mongoose.model('Related', relatedProducts, 'related');
